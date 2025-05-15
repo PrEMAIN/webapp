@@ -1,16 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Улучшенный органайзер</title>
+  <title>Органайзер</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#4CAF50">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <link rel="apple-touch-icon" href="icon-192.png">
 </head>
 <body>
   <div class="container">
     <header>
-      <h1>📅 Календарь-органайзер</h1>
+      <h1>⏰ Ваш личный веборганайзер</h1>
       <button id="themeToggle">🌙</button>
     </header>
 
@@ -18,18 +23,25 @@
       <input type="text" id="datePicker" placeholder="Выберите дату">
     </div>
 
-    <div class="task-input">
-      <input type="text" id="taskInput" placeholder="Добавить задачу...">
-      <button onclick="addTask()">➕</button>
+    <!-- Модальное окно для добавления задачи -->
+    <div id="taskModal" class="modal">
+      <div class="modal-content">
+        <h3>Добавить задачу на <span id="selectedTimeSlot"></span></h3>
+        <input type="text" id="taskInput" placeholder="Задача" autofocus>
+        <select id="categorySelect">
+          <option value="work">Работа</option>
+          <option value="personal">Личное</option>
+          <option value="study">Учёба</option>
+        </select>
+        <div class="modal-buttons">
+          <button onclick="saveTask()">Сохранить</button>
+          <button onclick="closeModal()">Отмена</button>
+        </div>
+      </div>
     </div>
 
-    <div class="task-filters">
-      <button class="active" onclick="filterTasks('all')">Все</button>
-      <button onclick="filterTasks('active')">Активные</button>
-      <button onclick="filterTasks('completed')">Выполненные</button>
-    </div>
-
-    <ul id="taskList"></ul>
+    <!-- Сетка времени -->
+    <div id="timeGrid"></div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
