@@ -1,26 +1,126 @@
+:root {
+  --bg-color: #ffffff;
+  --text-color: #333;
+  --primary-color: #4CAF50;
+  --border-color: #ddd;
+  --task-bg: #f9f9f9;
+}
+
+[data-theme="dark"] {
+  --bg-color: #1a1a1a;
+  --text-color: #f0f0f0;
+  --primary-color: #2E7D32;
+  --border-color: #444;
+  --task-bg: #2d2d2d;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    padding: 20px;
-    max-width: 500px;
-    margin: 0 auto;
-  }
-  button {
-    padding: 8px 12px;
-    background: #4CAF50;
-    color: white;
-    border: none;
-    cursor: pointer;
-  }
-  ul {
-    list-style: none;
-    padding: 0;
-  }
-  li {
-    padding: 8px;
-    border-bottom: 1px solid #ddd;
-    display: flex;
-    align-items: center;
-  }
-  input[type="checkbox"] {
-    margin-right: 10px;
-  }
+  font-family: Arial, sans-serif;
+  background: var(--bg-color);
+  color: var(--text-color);
+  padding: 20px;
+  max-width: 500px;
+  margin: 0 auto;
+  transition: background 0.3s, color 0.3s;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#themeToggle {
+  background: none;
+  border: none;
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
+.calendar-container {
+  margin: 20px 0;
+}
+
+.task-input {
+  display: flex;
+  margin-bottom: 15px;
+}
+
+.task-input input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+}
+
+.task-input button {
+  margin-left: 10px;
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 0 15px;
+  cursor: pointer;
+}
+
+.task-filters {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.task-filters button {
+  padding: 5px 10px;
+  background: none;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.task-filters button.active {
+  background: var(--primary-color);
+  color: white;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  padding: 12px;
+  background: var(--task-bg);
+  margin-bottom: 8px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+li input[type="checkbox"] {
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+li .delete-btn {
+  margin-left: auto;
+  background: none;
+  border: none;
+  color: #ff4444;
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+li .delete-btn:hover {
+  opacity: 1;
+}
+
+.completed {
+  text-decoration: line-through;
+  opacity: 0.7;
+}

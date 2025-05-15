@@ -3,19 +3,37 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Органайзер</title>
+  <title>Улучшенный органайзер</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="container">
-    <h1>Календарь-органайзер</h1>
-    <input type="date" id="dateInput">
-    <input type="text" id="taskInput" placeholder="Новая задача">
-    <button onclick="addTask()">Добавить</button>
-    
-    <h2>Задачи на <span id="currentDate"></span></h2>
+    <header>
+      <h1>📅 Календарь-органайзер</h1>
+      <button id="themeToggle">🌙</button>
+    </header>
+
+    <div class="calendar-container">
+      <input type="text" id="datePicker" placeholder="Выберите дату">
+    </div>
+
+    <div class="task-input">
+      <input type="text" id="taskInput" placeholder="Добавить задачу...">
+      <button onclick="addTask()">➕</button>
+    </div>
+
+    <div class="task-filters">
+      <button class="active" onclick="filterTasks('all')">Все</button>
+      <button onclick="filterTasks('active')">Активные</button>
+      <button onclick="filterTasks('completed')">Выполненные</button>
+    </div>
+
     <ul id="taskList"></ul>
   </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ru.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
