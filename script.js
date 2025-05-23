@@ -162,3 +162,15 @@ document.addEventListener("DOMContentLoaded", () => {
   selectedDate = new Date().toISOString().split("T")[0];
   generateTimeGrid();
 });
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js')
+      .then(registration => {
+        console.log('ServiceWorker зарегистрирован:', registration.scope);
+      })
+      .catch(error => {
+        console.log('Ошибка регистрации ServiceWorker:', error);
+      });
+  });
+}
